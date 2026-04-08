@@ -1,0 +1,116 @@
+:host {
+  --primary-gradient: linear-gradient(90deg, #1e3a8a 0%, #7e22ce 100%);
+  --dark-bg: #0f172a;
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --accent-blue: #2563eb;
+}
+
+.movie-header {
+  background: var(--primary-gradient);
+  min-height: 60px;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* --- CAMBIOS EN .back-btn --- */
+.back-btn {
+  text-decoration: none; /* Elimina el subrayado */
+  background: rgba(255, 255, 255, 0.1); /* Fondo sutil traslúcido */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde fino */
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex; /* Para que el fondo no ocupe todo el ancho */
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease; /* Suaviza el cambio al pasar el ratón */
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.2); /* Se aclara al pasar el ratón */
+  transform: translateX(-5px); /* Pequeño desplazamiento a la izquierda (efecto "volver") */
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.back-btn .icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Sección de contenido oscuro */
+.movie-content {
+  display: flex;
+  gap: 32px;
+  background-color: var(--dark-bg);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  align-items: flex-start;
+}
+
+.poster {
+  width: 280px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.details {
+  color: var(--text-main);
+}
+
+.title {
+  font-size: 3rem;
+  margin: 0 0 16px 0;
+  font-weight: 800;
+}
+
+.genres {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.badge {
+  background: var(--accent-blue);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.meta-info {
+  display: flex;
+  gap: 20px;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+  align-items: center;
+}
+
+.director-section {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.name {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}

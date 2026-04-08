@@ -1,0 +1,177 @@
+/* Contenedor que recorta lo que sobra */
+.scroll-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: block;
+  
+  /* Comportamiento de "Imán" */
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+  
+  /* Escondemos el scrollbar para estética Premium */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.movie-gallery {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 2rem; /* El padding inicial del catálogo */
+}
+
+/* El Item: Aquí está el truco de la flexibilidad */
+.snap-item {
+  flex: 0 0 220px; /* Ancho fijo: No crece, no encoge, base 220px */
+  scroll-snap-align: start; /* Se imanta al inicio de la pantalla */
+  transition: transform 0.3s ease;
+}
+
+/* Pequeño toque de interacción */
+.snap-item:hover {
+  transform: scale(1.05);
+}
+
+.scroll-spacer {
+  flex: 0 0 1rem; /* Asegura que al final del scroll haya un margen */
+}
+
+.btn-load-more {
+  display: block;           /* Permite usar margin: auto */
+  margin: 40px auto;        /* CENTRADO: Automático a izquierda y derecha */
+  padding: 12px 40px;
+  background-color: #e50914; /* Rojo vibrante */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-load-more:hover {
+  background-color: #b20710;
+  transform: scale(1.05);   /* Efecto de agrandado suave */
+}
+
+.listTittle {
+  /* Tipografía */
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+
+  color: #1a1a1a; 
+  
+  margin: 40px 20px 30px;
+  position: relative;
+  display: inline-block;
+
+  /* Sutil sombra para dar profundidad (opcional) */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
+
+/* El detalle: La línea azul ahora más intensa para resaltar sobre blanco */
+.listTittle::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 80px;
+  height: 6px;
+  background: #2563eb; /* Rojo potente */
+  border-radius: 10px;
+}
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Evitamos que el desbordamiento oculte el sombreado de las tarjetas */
+  padding: 10px 0;
+}
+
+.nav-btn {
+  margin-top: 1rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  
+  /* Botones verticales: ancho fijo, alto total */
+  width: 60px;
+  height: 75%; 
+  
+  background: rgba(0, 0, 0, 0.4); /* Fondo oscuro translúcido */
+  color: white;
+  border: none;
+  cursor: pointer;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(8px); /* Efecto cristal muy pro */
+  opacity: 0; /* Invisibles por defecto */
+}
+
+/* Solo se muestran cuando pasamos el ratón por encima del carrusel */
+.slider-wrapper:hover .nav-btn {
+  opacity: 1;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  width: 80px; /* Se ensanchan un poco al pasar por encima */
+}
+
+.nav-btn.left { 
+  left: 0; 
+  border-radius: 0 8px 8px 0; /* Redondeamos solo el lado interno */
+}
+
+.nav-btn.right { 
+  right: 0; 
+  border-radius: 8px 0 0 8px; /* Redondeamos solo el lado interno */
+}
+
+.nav-btn span {
+  font-size: 3rem;
+  transition: transform 0.2s;
+}
+
+.nav-btn:hover span {
+  transform: scale(1.3);
+  color: #e50914; /* Rojo al hacer hover */
+}
+
+.movie-grid {
+  display: grid;
+  /* Crea columnas de mínimo 200px. Si sobra espacio, se estiran (1fr) */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1400px; /* Evita que en pantallas ultra-anchas las pelis se vean gigantes */
+  margin: 0 auto;    /* Centra el grid */
+}
+
+/* Contenedor para centrar el botón "Ver más" */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+/* Ajuste para que los items del grid no tengan el efecto 'snap' del slider */
+.movie-grid app-movie-item {
+  scroll-snap-align: none;
+  width: 100%; /* Que ocupen todo el ancho de su celda en el grid */
+}
+
+/* En móviles los quitamos para no tapar contenido */
+@media (max-width: 768px) {
+  .nav-btn { display: none; }
+}
