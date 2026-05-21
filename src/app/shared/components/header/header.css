@@ -1,7 +1,6 @@
 /* features/shared/components/header/header.component.css */
 
 .main-header {
-  /* bg-gradient-to-r from-blue-600 to-purple-600 */
   background: linear-gradient(to right, #2563eb, #9333ea);
   color: white;
   width: 100%;
@@ -69,3 +68,32 @@ a {
   cursor: pointer;       
 }
 
+
+@media (max-width: 767px){
+  .post-header{
+    display: none;;
+  }
+
+  .header-title{
+    display: none;
+  }
+
+  nav{
+  margin-inline: 0.5rem;
+  display: flex;
+  gap: 1rem;
+
+}
+
+
+}
+
+/* --- ESTILOS PARA TABLET (Entre 768px y 1024px) --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .post-header {
+    display: none;
+  }
+
+  
+  
+}

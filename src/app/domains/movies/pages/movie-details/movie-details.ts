@@ -3,9 +3,9 @@ import { Movie } from '../../models/Movie';
 import { MovieApi } from '../../../../shared/services/movie-api';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MoviesPosterPipe } from '../../Pipes/movies-poster-pipe';
-import { iif } from 'rxjs';
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { GenreService } from '../../../../shared/services/genre-service';
+import { HeaderService } from '../../../../shared/services/header-service/header-service';
+
 
 @Component({
   selector: 'app-movie-details',
@@ -15,6 +15,7 @@ import { GenreService } from '../../../../shared/services/genre-service';
 })
 export class MovieDetails {
   movieService = inject(MovieApi);
+  headerService = inject(HeaderService)
 
   movie = signal<Movie| null>(null);
   genreService: any;
@@ -30,6 +31,8 @@ export class MovieDetails {
         this.getMovie(id)
       }
     })
+
+    this.headerService.headerTittle.set("");
   }
 
   getMovie(id:string){

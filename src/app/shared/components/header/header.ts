@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Search } from '../search/search';
 
 @Component({
@@ -8,4 +8,7 @@ import { Search } from '../search/search';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {}
+export class Header {
+  title = input.required<string>();
+  subtittle = input.required<string>();
+}

@@ -4,16 +4,19 @@ import { MovieItem } from '../../components/movie-item/movie-item';
 import { Movie } from '../../models/Movie';
 import { MovieApi } from '../../../../shared/services/movie-api';
 import { SearchService } from '../../../../shared/services/search-service';
+import { MovieSlider } from '../../components/movie-slider/movie-slider';
+import { HeaderService } from '../../../../shared/services/header-service/header-service';
 
 @Component({
   selector: 'app-movie-list',
-  imports: [Header, MovieItem],
+  imports: [ MovieItem, MovieSlider],
   templateUrl: './movie-list.html',
   styleUrl: './movie-list.css',
 })
 export class MovieList {
   private searchService = inject(SearchService)
   private movieService = inject(MovieApi)
+  private headerService = inject(HeaderService)
   //listas de peliculas
   searchMovies = signal<Movie[]>([])
   popularMovies = signal<Movie[]>([]);
@@ -25,7 +28,7 @@ export class MovieList {
 
   //contador para paginación
   pagCounter = 1;
-  isSearching: boolean = false;
+  isSearching = signal<boolean>(false);
   isAtStart = signal(true);
   
   
@@ -36,15 +39,16 @@ export class MovieList {
       this.resetPagination();
 
       if(query.length > 0){
-        this.isSearching=true;
+        this.isSearching.set(true);
         this.searchMovie(query);
       }else{
-        this.isSearching = false;
+        this.isSearching.set(false);
         this.loadMovies();
       }
     })
+    this.headerService.headerTittle.set("Explora nuestro catálogo de películas")
+    this.headerService.headerSubtittle.set("¡Descubre tu nueva película favorita!")
   }
-
 
   loadMovies(){
     this.loadPopularMovies()
@@ -124,7 +128,7 @@ export class MovieList {
   }
 
   handleLoadMore(){
-    if(this.isSearching){
+    if(this.isSearching()){
       this.searchMovie(this.searchService.text());
       this.pagCounter++
     }else{

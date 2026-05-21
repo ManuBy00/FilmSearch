@@ -19,8 +19,6 @@
       <a href="">Inicio</a>
       <a href="">Favoritos</a>
     </nav>
-    
-
   </div>
 
   <div>
@@ -28,7 +26,10 @@
   </div>
 </header>
 
-<div class="post-header">
-    <h1 class="tittle">Descubre tu próxima película favorita</h1>
-    <h1 class="subtittle">Explora nuestro catálogo con los últimos estrenos y clásicos</h1>
+@if (title()!="") {
+  <div class="post-header">
+    <h1 class="tittle">{{title()}}</h1>
+    <h1 class="subtittle">{{subtittle()}}</h1>
 </div>
+}
+

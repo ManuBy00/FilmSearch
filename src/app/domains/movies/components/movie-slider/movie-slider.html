@@ -1,0 +1,18 @@
+<h1 class="listTittle">{{ title() }}</h1>
+
+<div class="slider-wrapper">
+  @if (!isAtStart()) {
+    <button class="nav-btn left" (click)="scroll('left', slider)"><span>‹</span></button>
+  }
+
+  <div class="scroll-viewport" #slider (scroll)="updateArrows(slider)">
+    <div class="movie-gallery">
+      @for (movie of movies(); track movie.id) {
+        <app-movie-item class="snap-item" [movie]="movie"></app-movie-item>
+      }
+      <div class="scroll-spacer"></div>
+    </div>
+  </div>
+
+  <button class="nav-btn right" (click)="scroll('right', slider)"><span>›</span></button>
+</div>

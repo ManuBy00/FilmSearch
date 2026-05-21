@@ -18,7 +18,7 @@
     <div class="metadata">
       <span class="year">{{ movie.release_date | date:'yyyy' }}</span>
       <span class="separator"> • </span>
-      @for (id of movie.genre_ids; track $index) {
+      @for (id of movie.genre_ids.slice(0,3); track $index) {
       <span class="genres">{{ genreService.getGenreName(id) }} </span>
     }
     </div>
