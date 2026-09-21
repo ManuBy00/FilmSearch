@@ -1,0 +1,37 @@
+<section class="movie-header">
+  <div class="container">
+    
+
+    <div class="movie-content">
+      <div class="poster-container">
+        <img [src]="movie()?.poster_path | moviesPoster" [alt]="movie()?.title" class="poster">
+      </div>
+
+      <div class="details">
+        <h1 class="title">{{ movie()?.title }}</h1>
+        
+        <div class="genres">
+          @for (genre of movie()?.genre_ids; track $index) {
+            <span class="badge">{{ genreService.getGenreName() }}</span>
+          }
+        </div>
+
+        <div class="meta-info">
+          <span class="rating">
+            <span class="star">⭐</span> {{ movie()?.vote_average | number:'1.1-1' }}/10
+          </span>
+          <span class="year">📅 {{ movie()?.release_date | date:'yyyy' }}</span>
+          <span class="runtime">🕒 {{ movie()?.runtime }} min</span>
+        </div>
+
+        <div class="director-section">
+          <h3 class="label">
+            <span class="icon-director">🎞️</span> Sinopsis
+          </h3>
+          <p>{{ movie()?.overview }}</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

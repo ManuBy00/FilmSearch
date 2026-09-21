@@ -1,0 +1,47 @@
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 450px; /* Ajusta este ancho según tu header */
+}
+
+.search-icon-wrapper {
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  pointer-events: none; /* El click pasa a través del icono hacia el input */
+  z-index: 2;
+}
+
+.icon-svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #94a3b8; /* Gris suave que cambia en el focus */
+  transition: color 0.2s ease;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.8rem; /* El padding izquierdo deja sitio al icono */
+  font-size: 1rem;
+  color: #1e293b;
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 9999px; /* Forma de píldora */
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efectos de interacción */
+.search-input:focus {
+  border-color: #2563eb;
+  background-color: #f8fafc;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* Cambia el color del icono cuando el input tiene el foco */
+.search-container:focus-within .icon-svg {
+  color: #2563eb;
+}

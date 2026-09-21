@@ -1,0 +1,22 @@
+<div class="movie-card">
+  <div class="poster-wrapper">
+    <a [routerLink]="['/movie', movie.id]">
+      <img loading="lazy" [src]="movie.poster_path | moviesPoster" [alt]="movie.title" class="movie-poster">
+
+      <div class="hover-overlay">
+        <span class="vote-badge">⭐ {{ movie.vote_average | number:'1.2-2'}}</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="movie-info">
+    <h3 class="movie-title">{{ movie.title }}</h3>
+    <div class="metadata">
+      <span class="year">{{ movie.release_date | date:'yyyy' }}</span>
+      <span class="separator"> • </span>
+      @for (id of movie.genre_ids.slice(0,3); track $index) {
+      <span class="genres">{{ genreService.getGenreName(id) }} </span>
+    }
+    </div>
+  </div>
+</div>

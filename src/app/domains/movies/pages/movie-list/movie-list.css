@@ -1,0 +1,110 @@
+Para que tu interfaz se vea de lujo tanto en un monitor 4K como en un móvil pequeño, tenemos que aplicar cambios en tres áreas: tipografía, anchos de tarjeta y márgenes.
+
+Aquí tienes el CSS optimizado con las Media Queries necesarias para que sea totalmente responsive:
+
+CSS
+/* --- ESTILOS BASE (MÓVIL PRIMERO O GENERAL) --- */
+
+.listTittle {
+  font-size: 1.8rem; /* Tamaño base más pequeño para móviles */
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  position: relative;
+  display: inline-block;
+  margin: 20px 1rem 10px; /* Márgenes reducidos */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
+
+.movie-gallery {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem; /* Menos padding lateral en móvil */
+}
+
+.snap-item {
+  flex: 0 0 160px; /* Tarjetas más estrechas en móvil (cabrán más o se verán mejor) */
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.movie-grid {
+  display: grid;
+  /* En móviles, las columnas pueden ser más pequeñas para que quepan 2 */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+/* --- TABLETS (768px o más) --- */
+@media (min-width: 768px) {
+  .listTittle {
+    font-size: 2.2rem;
+    margin: 30px 2rem 15px;
+  }
+
+  .movie-gallery {
+    padding: 0.5rem 2rem;
+  }
+
+  .snap-item {
+    flex: 0 0 200px; /* Aumentamos el tamaño de la tarjeta */
+  }
+
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+}
+
+/* --- DESKTOP (1024px o más) --- */
+@media (min-width: 1024px) {
+  .listTittle {
+    font-size: 2.8rem; /* Tamaño original para pantallas grandes */
+    letter-spacing: -1.5px;
+  }
+
+  .snap-item {
+    flex: 0 0 220px; /* Tamaño original */
+  }
+
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* --- OPTIMIZACIONES EXTRAS --- */
+
+/* Evitar que el hover rompa el layout en móviles (el hover no existe en táctil) */
+@media (hover: hover) {
+  .snap-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+  }
+}
+
+/* Ajuste del botón cargar más para móvil */
+@media (max-width: 480px) {
+  .btn-load-more {
+    width: 90%; /* Casi ancho completo en móviles pequeños */
+    padding: 15px;
+  }
+}
+
+/* Scroll Viewport se mantiene igual, ya es responsive por naturaleza */
+.scroll-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: block;
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-viewport::-webkit-scrollbar { display: none; }

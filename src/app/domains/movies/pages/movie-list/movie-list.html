@@ -1,0 +1,22 @@
+@if (isSearching()) {
+  <div class="movie-grid">
+    @for (movie of searchMovies(); track movie.id) {
+      <app-movie-item 
+        [movie]="movie" 
+        (addToMyMovies)="fromChild($event)">
+      </app-movie-item>
+    }
+  </div>
+
+  <div class="pagination-container">
+    <button class="btn-load-more" (click)="handleLoadMore()">Ver más</button>
+  </div>
+
+} @else {
+ <app-movie-slider title="Populares" [movies]="popularMovies()"></app-movie-slider>
+  <app-movie-slider title="Mejor Valoradas" [movies]="topRatedMovies()"></app-movie-slider>
+  <app-movie-slider title="Acción" [movies]="actionMovies()"></app-movie-slider>
+  <app-movie-slider title="Drama" [movies]="dramaMovies()"></app-movie-slider>
+  <app-movie-slider title="Comedia" [movies]="comedyMovies()"></app-movie-slider>
+  
+}

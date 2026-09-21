@@ -1,0 +1,128 @@
+/* 1. Contenedor principal del carrusel */
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Espacio entre filas */
+  padding-inline: 40px;
+}
+
+/* 2. El visor del scroll (la ventana que recorta) */
+.scroll-viewport {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scroll-viewport::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* 3. El contenedor largo de las películas */
+.movie-gallery {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px 40px; /* Espacio para que las flechas no tapen el contenido */
+}
+
+/* 4. Los botones laterales (Estilo Netflix) */
+.nav-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  opacity: 0; /* Invisibles por defecto */
+}
+
+/* Solo se ven al pasar el ratón por el slider */
+.slider-wrapper:hover .nav-btn {
+  opacity: 1;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  width: 70px;
+}
+
+.nav-btn.left { 
+  left: 0; 
+  border-radius: 0 8px 8px 0;
+}
+
+.nav-btn.right { 
+  right: 0; 
+  border-radius: 8px 0 0 8px;
+}
+
+.nav-btn span {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* 5. Ajuste para los items del carrusel */
+.snap-item {
+  flex: 0 0 220px; /* Ancho fijo para cada peli */
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.snap-item:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/* Espaciador final para que el scroll no termine de golpe */
+.scroll-spacer {
+  flex: 0 0 40px;
+  content: '';
+}
+
+/* Estilo para el título (si lo moviste también aquí) */
+.listTittle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 20px 40px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.listTittle::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  background: #2563eb;
+  border-radius: 2px;
+}
+
+/* Responsive: en móviles el scroll táctil es mejor que las flechas */
+@media (max-width: 768px) {
+  .nav-btn {
+    display: none;
+  }
+  .movie-gallery {
+    padding: 10px 20px;
+  }
+  .listTittle {
+    margin: 20px;
+  }
+}
