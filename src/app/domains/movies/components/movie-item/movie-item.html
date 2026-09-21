@@ -2,10 +2,6 @@
   <div class="poster-wrapper">
     <a [routerLink]="['/movie', movie.id]">
       <img loading="lazy" [src]="movie.poster_path | moviesPoster" [alt]="movie.title" class="movie-poster">
-      
-      <button class="btn-add-circle" (click)="addToMyMoviesHandler()" title="Add to my movies">
-        <span>+</span>
-      </button>
 
       <div class="hover-overlay">
         <span class="vote-badge">⭐ {{ movie.vote_average | number:'1.2-2'}}</span>

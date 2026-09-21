@@ -4,6 +4,12 @@
   --text-main: #ffffff;
   --text-muted: #94a3b8;
   --accent-blue: #2563eb;
+
+  /*fondo */
+  display: block;
+  min-height: 100vh;
+  min-height: 100dvh; /* Soporte dinámico para navegadores móviles */
+  background: var(--primary-gradient); /* O el color/degradado que uses de fondo general */
 }
 
 .movie-header {
